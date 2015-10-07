@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Gregory Shulov
+  description: An ansible role to setup and configure Kodi under Debian based distro's
+  license: BSD
+  min_ansible_version: 1.6
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  categories:
+  - system
+dependencies:
+  - GR360RY.htpc-user
+  - GR360RY.htpc-media
