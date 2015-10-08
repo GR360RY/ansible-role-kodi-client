@@ -87,10 +87,10 @@ Start Kodi session without Ubuntu Desktop:
         htpc_user_password: bar
         kodi_enable_ubuntu_desktop: False
         htpc_media_path: /media/big_disk
-        htpc_media_movies: Фильмы
-        htpc_media_tv: ТВ
-        htpc_media_music: Музыка
-        htpc_media_pictures: Картинки
+        htpc_media_movies: Movies
+        htpc_media_tv: TV
+        htpc_media_music: Music
+        htpc_media_pictures: Pictures
 
       roles:
         - role: GR360RY.kodi-client
