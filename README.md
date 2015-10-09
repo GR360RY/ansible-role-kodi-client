@@ -33,6 +33,7 @@ Role Variables
  kodi_enable_ubuntu_desktop | True                               | 
  kodi_host                  | {{ ansible_default_ipv4.address }} | Helper Variable
 
+
 Optional variables also defined in `GR360RY.kodi-mysql`. Kodi MySQL Database can be configured as a Backend.
 When installed together with `GR360RY.kodi-mysql` on the same host, `localhost` for `kodi_mysqldb_host` will be used automatically ( see examples ). 
 
@@ -72,7 +73,6 @@ Variables defined in `GR360RY.htpc-media` role:
  htpc_media_pictures      | pictures      |
 
 
-
 Example Playbook
 ----------------
 
@@ -96,7 +96,7 @@ Start Kodi session without Ubuntu Desktop:
         - role: GR360RY.kodi-client
 ```
 
-Configure Kodi together with Kodi Mysql Database ( download GR360RY.kodi-client role ):
+Configure Kodi together with Kodi Mysql Database ( download GR360RY.kodi-mysql role ):
 
 ```
     - hosts: htpc
