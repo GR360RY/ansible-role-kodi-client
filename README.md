@@ -27,15 +27,13 @@ List of tasks that will be performed under kodi-client role:
 Role Variables
 --------------
 
- name                       | default                            | comment
-----------------------------|------------------------------------|-------------
- kodi_repo                  | 'ppa:team-xbmc/ppa'                | 
- kodi_enable_ubuntu_desktop | True                               | 
- kodi_host                  | {{ ansible_default_ipv4.address }} | Helper Variable
+ name                       | default             | comment
+----------------------------|---------------------|-------------
+ kodi_repo                  | 'ppa:team-xbmc/ppa' | 
+ kodi_enable_ubuntu_desktop | True                | 
 
 
-Optional variables also defined in `GR360RY.kodi-mysql`. Kodi MySQL Database can be configured as a Backend.
-When installed together with `GR360RY.kodi-mysql` on the same host, `localhost` for `kodi_mysqldb_host` will be used automatically ( see examples ). 
+Optional variables also defined in `GR360RY.kodi-mysql`. Kodi MySQL Database can be configured as a Backend ( see examples ). 
 
  name                   | comment
 ------------------------|-------------
