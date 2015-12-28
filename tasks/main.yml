@@ -1,19 +1,13 @@
 ---
 # tasks file for kodi-client
 
-- name: Create HTPC user .cache/unity directory
-  file: path="~{{ htpc_user_username }}/.cache/unity/" state=directory owner={{ htpc_user_username }} group={{ htpc_user_username }} mode=0755
-
-- name: Disable First Login pop-up screen
-  file: path="~{{ htpc_user_username }}/.cache/unity/first_run.stamp" state=touch owner={{ htpc_user_username }} group={{ htpc_user_username }} mode=0755
-
 - name: Add Kodi repository
   apt_repository: repo={{ kodi_repo }} state=present
 
 - name: Make sure Kodi is installed
-  apt: name='kodi' update_cache=yes
+  apt: name='kodi' update_cache=yes cache_valid_time=3600
 
-- name: Make sure Kodi Config folders are available
+- name: Make sure Kodi config folders are available
   file: path={{ item }} state=directory owner={{ htpc_user_username }} group={{ htpc_user_username }} mode=0755
   with_items:
     - "~{{ htpc_user_username }}/.kodi/"
@@ -28,23 +22,20 @@
 - name: Setup Autologin for HTPC User
   template: src=etc_lightdm_lightdm.conf.j2 dest=/etc/lightdm/lightdm.conf owner=root group=root mode=0664
 
-- name: Get HTPC User ID
-  command: /usr/bin/id -u {{ htpc_user_username }}
-  register: htpc_user_id
-  changed_when: False
+- name: Disable Keyboard Shortcut Overlay on first boot
+  copy: src=overlay.sh dest=/etc/profile.d/overlay.sh owner=root group=root mode=0644
 
-- name: Get DBUS PATH for HTPC user in AccountService
-  shell: dbus-send --print-reply=literal --system --dest=org.freedesktop.Accounts /org/freedesktop/Accounts org.freedesktop.Accounts.FindUserById int64:{{ htpc_user_id.stdout }}
-  register: xbmc_dbus_path
-  changed_when: False
+- name: Upload user_xsession.py script
+  copy: src=user_xsession.py dest=/usr/local/bin/user_xsession.py owner=root group=root mode=0744
 
-- name: Set Default Lightdm session to Kodi
-  shell: dbus-send --print-reply --system --dest=org.freedesktop.Accounts {{ xbmc_dbus_path.stdout }} org.freedesktop.Accounts.User.SetXSession string:'XBMC'
-  when: not kodi_enable_ubuntu_desktop
+- name: Get Xsession
+  command: /usr/local/bin/user_xsession.py --user-name {{ htpc_user_username }} get
+  register: xsession_validate
+  changed_when: false
 
-- name: Set Default Lightdm session to Ubuntu
-  shell: dbus-send --print-reply --system --dest=org.freedesktop.Accounts {{ xbmc_dbus_path.stdout }} org.freedesktop.Accounts.User.SetXSession string:'ubuntu'
-  when: kodi_enable_ubuntu_desktop
+- name: Set Xsession
+  command: /usr/local/bin/user_xsession.py --user-name {{ htpc_user_username }} set {{ kodi_xsession }}
+  changed_when: xsession_validate.stdout != kodi_xsession
 
 - name: Make sure ~/.config/autostart directory is available
   file: state=directory dest={{ item }} owner={{ htpc_user_username }} group={{ htpc_user_username }} mode=0700

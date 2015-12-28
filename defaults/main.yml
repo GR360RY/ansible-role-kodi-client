@@ -3,9 +3,8 @@
 
 kodi_client_enabled: True
 
-kodi_repo: 'ppa:team-xbmc/ppa'    # Kodi Ubuntu ppa.
-
-kodi_enable_ubuntu_desktop: True  # Start Kodi as part of Ubuntu desktop
+kodi_repo: 'ppa:team-xbmc/ppa'   # Kodi Ubuntu ppa.
+kodi_xsession: ubuntu            # Set to 'kodi' to run Kodi in standalone mode
 
 # Helper Variables
 

@@ -16,21 +16,22 @@ Overview
 
 List of tasks that will be performed under kodi-client role:
 
-1. Install Kodi Media Player
-2. Configure LightDM to autlogin HTPC user and start Kodi automatically in full screen mode. Start Kodi as part of Ubuntu desktop or as standalone session.
-3. Disable Screen Saver
-4. Configure Movies, TV and Pictures Sources in Kodi.
-5. Enable Kodi Internal Web Server.
-6. Optionally configure Kodi to use MySQL Backend ( see examples ).
+1. Install Kodi Media Player.
+2. Configure LightDM to autlogin HTPC user.
+3. Run Kodi on login as part of Ubuntu desktop or as standalone Xsession.
+4. Disable Screen Saver.
+5. Configure Movies, TV and Pictures Sources in Kodi.
+6. Enable Kodi Internal Web Server.
+7. Optionally configure Kodi to use MySQL Backend ( see examples ).
 
 
 Role Variables
 --------------
 
- name                       | default             | comment
-----------------------------|---------------------|-------------
- kodi_repo                  | 'ppa:team-xbmc/ppa' | 
- kodi_enable_ubuntu_desktop | True                | 
+ name          | default             | comment
+---------------|---------------------|-------------
+ kodi_repo     | 'ppa:team-xbmc/ppa' | 
+ kodi_xsession | ubuntu              | Use 'kodi' to run Kodi in standalone mode.
 
 
 Optional variables also defined in `GR360RY.kodi-mysql`. Kodi MySQL Database can be configured as a Backend ( see examples ). 
