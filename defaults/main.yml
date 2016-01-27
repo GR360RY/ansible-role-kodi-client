@@ -1,7 +1,7 @@
 ---
 # defaults file for kodi-client
 
-kodi_client_enabled: True
+kodi_client_enabled: yes
 
 kodi_repo: 'ppa:team-xbmc/ppa'   # Kodi Ubuntu ppa.
 kodi_xsession: ubuntu            # Set to 'kodi' to run Kodi in standalone mode
