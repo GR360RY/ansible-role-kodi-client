@@ -2,7 +2,7 @@
 # tasks file for kodi-client
 
 - name: Add Kodi repository
-  apt_repository: repo={{ kodi_repo }} state=present
+  apt_repository: repo={{ kodi_repo }} state=present update_cache=yes
 
 - name: Make sure Kodi is installed
   apt: name='kodi' update_cache=yes cache_valid_time=3600
