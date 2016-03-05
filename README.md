@@ -3,7 +3,7 @@ kodi-client
 
 [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.kodi--client-green.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/3098)
 
-An ansible role to install and configure Kodi.
+An Ansible role to install and configure Kodi.
 
 Requirements
 ------------
@@ -24,17 +24,27 @@ List of tasks that will be performed under kodi-client role:
 6. Enable Kodi Internal Web Server.
 7. Optionally configure Kodi to use MySQL Backend ( see examples ).
 
+Downloads and Media folders layout if used with default variable values:
+
+```
+/mnt/media/
+├── downloads
+├── movies
+├── music
+├── pictures
+└── tv
+```
 
 Role Variables
 --------------
 
  name          | default             | comment
 ---------------|---------------------|-------------
- kodi_repo     | 'ppa:team-xbmc/ppa' | 
+ kodi_repo     | 'ppa:team-xbmc/ppa' |
  kodi_xsession | ubuntu              | Use 'kodi' to run Kodi in standalone mode.
 
 
-Optional variables also defined in `GR360RY.kodi-mysql`. Kodi MySQL Database can be configured as a Backend ( see examples ). 
+Optional variables also defined in `kodi-mysql`. Kodi MySQL Database can be configured as a Backend ( see examples ).
 
  name                   | comment
 ------------------------|-------------
@@ -46,28 +56,28 @@ Optional variables also defined in `GR360RY.kodi-mysql`. Kodi MySQL Database can
 Dependencies
 ------------
 
- Role Name| Description
+Role Name | Description
 ----------|-----------
 [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--common-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-common/)| Create htpc user and media folders|
 
 Variables defined in `GR360RY.htpc-common` role:
 
- Name                   | Default   
------------------------ |------------
- htpc_user_username     | htpc      
- htpc_user_password     | htpc      
- htpc_user_group        | htpc      
- htpc_user_shell        | /bin/bash 
- htpc_user_ssh_service  | yes       
- htpc_user_sudo_access  | yes       
- htpc_media_path        | /mnt/media
- htpc_media_movies      | movies    
- htpc_media_tv          | tv        
- htpc_media_music       | music     
- htpc_media_pictures    | pictures  
- htpc_media_downloads   | downloads
- htpc_zeroconf          | yes 
-
+Name                      | Default   
+--------------------------|------------
+htpc_user_username        | htpc      
+htpc_user_password        | htpc      
+htpc_user_group           | htpc      
+htpc_user_shell           | /bin/bash
+htpc_user_ssh_service     | yes       
+htpc_user_sudo_access     | yes     
+htpc_create_media_folders | yes
+htpc_media_path           | /mnt/media
+htpc_media_movies         | movies    
+htpc_media_tv             | tv        
+htpc_media_music          | music     
+htpc_media_pictures       | pictures  
+htpc_media_downloads      | downloads
+htpc_zeroconf             | yes
 
 Example Playbook
 ----------------
@@ -95,7 +105,7 @@ Start Kodi session without Ubuntu Desktop:
         - role: GR360RY.kodi-client
 ```
 
-Configure Kodi together with Kodi Mysql Database ( download GR360RY.kodi-mysql role ):
+Configure Kodi together with Kodi Mysql Database ( download `kodi-mysql` role ):
 
 ```
     - hosts: htpc
@@ -134,10 +144,10 @@ This role is part of HTPC-Ansible project that includes additional roles for bui
 [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.deluge-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/deluge)              | Install Deluge Bittornet Client
 [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.nzbtomedia-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/nzbtomedia)      | Install NZBtoMedia Postprocessing
 [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.sickrage-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/sickrage)          | Install SickRage
-<!-- 
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.sabnzbd-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/sabnzbd)            | Install Sabnzbd
 [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.couchpotato-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/couchpotato)    | Install CouchPotato
 [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--manager-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-manager) | Install htpc-manager
+<!--
+[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.sabnzbd-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/sabnzbd)            | Install Sabnzbd
 [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.tvheadend-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/tvheadend)        | Install Tvheadend
 
 Additional Info is available at [www.htpc-ansible.org](http://www.htpc-ansible.org)
