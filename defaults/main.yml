@@ -1,12 +1,21 @@
 ---
 # defaults file for kodi-client
 
+# Helper variable. In use by other roles
 kodi_client_enabled: yes
 
-kodi_repo: 'ppa:team-xbmc/ppa'   # Kodi Ubuntu ppa.
-kodi_xsession: ubuntu            # Set to 'kodi' to run Kodi in standalone mode
+# Kodi Ubuntu ppa.
+kodi_repo: 'ppa:team-xbmc/ppa'
 
-# Helper Variables
+# Run Kodi on login as part of Ubuntu desktop
+# Set to 'kodi' to run Kodi as standalone Xsession.
+# See examples.
+kodi_xsession: ubuntu            
 
+# Helper variable. In use by other roles
 kodi_host: "{{ ansible_default_ipv4.address }}"
+
+# Helper variable. When installed together with `kodi-mysql` role
+# assume that mysql database runs on the same host as `kodi-client`
+# See examples.
 kodi_mysqldb_host: "{{ ansible_default_ipv4.address }}"

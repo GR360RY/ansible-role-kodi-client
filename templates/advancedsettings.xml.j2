@@ -21,14 +21,14 @@
 {% elif kodi_mysqldb_host is defined and kodi_mysqldb_host != ansible_default_ipv4.address %}
   <videodatabase>
     <type>mysql</type>
-    <host>{{ xbmc_mysqldb_host }}</host>
+    <host>{{ kodi_mysqldb_host }}</host>
     <port>3306</port>
     <user>{{ kodi_mysqldb_user }}</user>
     <pass>{{ kodi_mysqldb_password }}</pass>
   </videodatabase> 
   <musicdatabase>
     <type>mysql</type>
-    <host>{{ xbmc_mysqldb_host }}</host>
+    <host>{{ kodi_mysqldb_host }}</host>
     <port>3306</port>
     <user>{{ kodi_mysqldb_user }}</user>
     <pass>{{ kodi_mysqldb_password }}</pass>
