@@ -14,7 +14,7 @@ Make sure to download roles specified in **Dependencies** section if installed n
 Overview
 --------
 
-List of tasks that will be performed under kodi-client role:
+List of tasks that will be performed under `kodi-client` role:
 
 1. Install Kodi Media Player.
 2. Configure LightDM to autlogin HTPC user.
