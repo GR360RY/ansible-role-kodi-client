@@ -120,7 +120,7 @@ Create HTPC user `foo` indentified by `bar`. Use local storage and sqlite databa
 Start Kodi as standalone Xsession:
 
 ```
-- hosts: htpc
+- hosts: htpc-server
   become: yes
 
   vars:
@@ -143,7 +143,7 @@ Start Kodi as standalone Xsession:
 Configure Kodi together with Kodi MySQL Database and NAS for sharing with other kodi clients:
 
 ```
-- hosts: htpc
+- hosts: htpc-server
   become: yes
 
   roles:
@@ -155,7 +155,7 @@ Configure Kodi together with Kodi MySQL Database and NAS for sharing with other 
 Use External MySQL Database for Kodi Media Library:
 
 ```
-- hosts: htpc
+- hosts: htpc-server
   become: yes
 
   vars:
